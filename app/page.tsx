@@ -18,43 +18,40 @@ export default function Home() {
       
 
 
+<section
+  id="top"
+  className="relative min-h-screen flex flex-col items-center justify-center px-6 text-center"
+>
+  {/* Image */}
+  <Image
+    src="/me.jpg"
+    alt="Mohammad profile picture"
+    width={210}
+    height={210}
+    priority
+    className="rounded-full mb-10 border-2 border-current/20"
+  />
+
+  {/* Text block */}
+  <div className="relative max-w-3xl">
+    {/* Accent line aligned to TEXT */}
+    <div className="absolute -left-6 md:-left-12 top-1/2 -translate-y-1/2 h-38 w-[4px] rounded-full bg-indigo-500/80" />
+
+    <h1 className="text-5xl md:text-6xl font-extrabold leading-tight tracking-tight">
+      Hi, I’m <span className="text-indigo-500">Mohammad</span>
+    </h1>
+
+    <p className="mt-6 text-xl md:text-2xl text-current/70 max-w-3xl mx-auto">
+      I’m a Computer Engineering student at Toronto Metropolitan University.
+      This portfolio showcases my journey into tech.
+    </p>
+  </div>
+</section>
+      {/* Projects Section */}  
 
 
-      {/* HERO */}
-      <section className="min-h-screen flex flex-col items-center justify-center px-6 text-center">
-        <Image
-          src="/me.jpg"
-          alt="Mohammad profile picture"
-          width={210}
-          height={150}
-          className="rounded-full mb-6 border-2"
-          priority
-        />
 
-        <h1 className="text-5xl font-bold mb-4">
-          Mohammad Amir
-        </h1>
 
-        <p className="text-xl opacity-80 mb-8 max-w-2xl">
-          Computer Engineering Student at Toronto Metropolitan University (Formerly Ryerson) | Full-Stack Developer
-        </p>
-
-        <div className="flex gap-4">
-          <a
-            href="#projects"
-            className="px-6 py-3 rounded-lg font-medium border hover:opacity-90 transition"
-          >
-            View Projects
-          </a>
-
-          <a
-            href="#contact"
-            className="px-6 py-3 rounded-lg font-medium border hover:opacity-90 transition"
-          >
-            Contact Me
-          </a>
-        </div>
-      </section>
 
 <ProjectsSection />
 
@@ -62,34 +59,11 @@ export default function Home() {
       {/* Technologies*/}
   <section id="projects" className="px-6 py-20 max-w-5xl mx-auto">
         <h2 className="text-4xl font-bold mb-10 text-center">
-          Projects
+          
         </h2>
 
-        <div className="grid md:grid-cols-2 gap-6">
-          <div className="rounded-xl p-6 border transition">
-            <h3 className="text-2xl font-semibold mb-2">
-              Weather App
-            </h3>
-            <p className="opacity-80 mb-4">
-              Real-time weather application using React and OpenWeather API.
-            </p>
-            <a href="#" className="underline underline-offset-4 hover:opacity-80">
-              View Project →
-            </a>
-          </div>
-
-          <div className="rounded-xl p-6 border transition">
-            <h3 className="text-2xl font-semibold mb-2">
-              Path Finder
-            </h3>
-            <p className="opacity-80 mb-4">
-              Visual pathfinding algorithms with interactive UI.
-            </p>
-            <a href="#" className="underline underline-offset-4 hover:opacity-80">
-              View Project →
-            </a>
-          </div>
-        </div>
+        
+         
       </section>
 
 

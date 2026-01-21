@@ -1,232 +1,137 @@
-// components/ProjectsSection.tsx
 "use client";
 
-type Project = {
-  title: string;
-  tagline: string;
-  description: string;
-  stack: string[];
-  highlights: string[];
-  href?: string; // live demo
-  repo?: string; // github
-  featured?: boolean;
-};
-
-const projects: Project[] = [
-  {
-    title: "QueueSense",
-    tagline: "Full-stack booking + waitlist system for small businesses",
-    description:
-      "A full-stack web app that lets customers book time slots, join a waitlist, and get notified when spots open up. Admins can manage availability, approve/cancel bookings, and view a simple dashboard of daily traffic.",
-    stack: [
-      "Next.js",
-      "TypeScript",
-      "Node.js",
-      "PostgreSQL",
-      "Prisma",
-      "Auth",
-      "Tailwind",
-    ],
-    highlights: [
-      "Role-based access (admin vs customer)",
-      "Booking conflicts prevented with server-side checks",
-      "Waitlist auto-promotion when slots open",
-    ],
-    href: "#", // put your live link later
-    repo: "#", // put your github later
-    featured: true,
-  },
-
-  {
-    title: "API Health Monitor",
-    tagline: "Track uptime + latency for your endpoints",
-    description:
-      "A monitoring tool that pings configured endpoints on a schedule and logs response time, status codes, and downtime events. Includes a small dashboard with filters and basic charts.",
-    stack: ["Next.js", "Node.js", "Cron Jobs", "SQLite/Postgres"],
-    highlights: ["Scheduled checks", "Incident log", "Dashboard filters"],
-    href: "#",
-    repo: "#",
-  },
-
-  {
-    title: "Campus Marketplace",
-    tagline: "Buy/sell listings with messaging",
-    description:
-      "A marketplace for students to post listings, save favorites, and message sellers. Includes image upload, search + category filters, and moderation-friendly reporting tools.",
-    stack: ["React", "Express", "MongoDB", "Cloud Uploads"],
-    highlights: ["Search + filters", "Messaging", "Image uploads"],
-    href: "#",
-    repo: "#",
-  },
-];
-
-
-function Chip({ label }: { label: string }) {
-  return (
-    <span className="text-xs px-2.5 py-1 rounded-full border border-white/15 bg-white/10">
-      {label}
-    </span>
-  );
-}
-
-function ButtonLink({
-  children,
-  href,
-  variant = "primary",
-}: {
-  children: React.ReactNode;
-  href?: string;
-  variant?: "primary" | "ghost";
-}) {
-  const base =
-    "inline-flex items-center justify-center px-4 py-2 rounded-xl text-sm font-semibold transition";
-  const styles =
-    variant === "primary"
-      ? "bg-white text-black hover:opacity-90"
-      : "border border-white/20 text-white hover:bg-white/10";
-
-  return (
-    <a
-      href={href || "#"}
-      className={`${base} ${styles}`}
-      target={href?.startsWith("http") ? "_blank" : undefined}
-      rel={href?.startsWith("http") ? "noopener noreferrer" : undefined}
-    >
-      {children}
-    </a>
-  );
-}
-
 export default function ProjectsSection() {
-  const featured = projects.find((p) => p.featured);
-  const rest = projects.filter((p) => !p.featured);
-
   return (
-    <section id="projects" className="px-6 py-20">
-      <div className="mx-auto max-w-6xl">
-        <div className="text-center mb-12">
-          <h2 className="text-4xl font-bold tracking-tight">Projects</h2>
-          <p className="mt-3 text-base opacity-80 max-w-2xl mx-auto">
-            A few things I’ve built to practice real-world engineering: clean UI, strong structure,
-            and purposeful features.
-          </p>
-        </div>
+    <section id="projects" className="max-w-6xl mx-auto px-6 py-24">
+      {/* Section header */}
+      <div className="mb-14 text-center">
+        <h2 className="text-4xl font-bold mb-4">Projects</h2>
+        <p className="opacity-70 max-w-2xl mx-auto">
+          A selection of academic and personal projects demonstrating
+          systems-level thinking, full-stack development, and software design.
+        </p>
+      </div>
 
-        {/* Featured project */}
-        {featured && (
-          <div
-            className="
-              rounded-3xl
-              bg-[#1f2a44]
-              text-white
-              border border-white/10
-              p-8 md:p-10
-              hover:-translate-y-1
-              hover:shadow-xl
-              transition
-            "
-          >
-            <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-8">
-              <div className="max-w-2xl">
-                <div className="text-sm font-semibold opacity-80 mb-2">
-                  Featured Project
-                </div>
+      <div className="grid gap-8">
+        {/* Project 1 */}
+        <ProjectCard
+          title="Media Center Embedded System"
+          date="December 2025"
+          tech="C • ARM Cortex-M • Keil uVision"
+          bullets={[
+            "Designed and implemented an embedded media center on the MCB1700 development board using C",
+            "Built a graphical LCD menu system navigated via joystick input",
+            "Implemented a photo gallery displaying bitmap images converted to C arrays using GIMP",
+            "Developed an MP3 audio player streaming audio from a PC via USB with volume control",
+            "Integrated LCD, joystick, USB audio, LEDs, and speaker peripherals",
+            "Focused on real-time interaction, memory management, and low-level hardware control",
+          ]}
+          demoLink="https://www.youtube.com/watch?v=YOUR_VIDEO_ID"
+          demoLabel="Watch Demo"
+        />
 
-                <h3 className="text-3xl md:text-4xl font-extrabold tracking-tight">
-                  {featured.title}
-                </h3>
+        {/* Project 2 */}
+        <ProjectCard
+          title="Academic Workload Planner"
+          date="July 2025"
+          tech="Node.js • Express • React • MongoDB • Docker"
+          bullets={[
+            "Developed RESTful APIs for managing users, events, and schedules",
+            "Designed a responsive React frontend with filtering and search",
+            "Implemented MongoDB schemas with Mongoose",
+            "Enabled full CRUD functionality",
+            "Containerized the app using Docker",
+            "Focused on scalability and clean architecture",
+          ]}
+          githubLink="https://github.com/YOUR_USERNAME/academic-workload-planner"
+        />
 
-                <p className="mt-2 text-lg opacity-90">{featured.tagline}</p>
-
-                <p className="mt-5 opacity-85 leading-relaxed">
-                  {featured.description}
-                </p>
-
-                <div className="mt-6 flex flex-wrap gap-2">
-                  {featured.stack.map((s) => (
-                    <Chip key={s} label={s} />
-                  ))}
-                </div>
-              </div>
-
-              <div className="md:w-[320px] w-full">
-                <div className="rounded-2xl border border-white/10 bg-white/5 p-6">
-                  <div className="font-semibold mb-3">Key Highlights</div>
-                  <ul className="space-y-2 opacity-90 text-sm">
-                    {featured.highlights.map((h) => (
-                      <li key={h} className="flex gap-2">
-                        <span className="mt-0.5">✅</span>
-                        <span>{h}</span>
-                      </li>
-                    ))}
-                  </ul>
-
-                  <div className="mt-6 flex gap-3">
-                    <ButtonLink href={featured.href} variant="primary">
-                      Live Demo
-                    </ButtonLink>
-                    <ButtonLink href={featured.repo} variant="ghost">
-                      GitHub
-                    </ButtonLink>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        )}
-
-        {/* Other projects */}
-        <div className="mt-8 grid md:grid-cols-2 gap-6">
-          {rest.map((p) => (
-            <div
-              key={p.title}
-              className="
-                rounded-2xl
-                border border-current/10
-                bg-white/60 dark:bg-black/15
-                backdrop-blur
-                p-7
-                hover:-translate-y-0.5
-                hover:shadow-md
-                transition
-              "
-            >
-              <h4 className="text-xl font-bold">{p.title}</h4>
-              <div className="mt-1 text-sm opacity-75">{p.tagline}</div>
-
-              <p className="mt-4 text-sm opacity-85 leading-relaxed">
-                {p.description}
-              </p>
-
-              <div className="mt-5 flex flex-wrap gap-2">
-                {p.stack.map((s) => (
-                  <span
-                    key={s}
-                    className="text-xs px-2.5 py-1 rounded-full border border-current/10 bg-white/40 dark:bg-black/10"
-                  >
-                    {s}
-                  </span>
-                ))}
-              </div>
-
-              <div className="mt-6 flex gap-3">
-                <a
-                  href={p.href || "#"}
-                  className="text-sm font-semibold underline underline-offset-4 opacity-80 hover:opacity-100 transition"
-                >
-                  View →
-                </a>
-                <a
-                  href={p.repo || "#"}
-                  className="text-sm font-semibold underline underline-offset-4 opacity-80 hover:opacity-100 transition"
-                >
-                  Repo →
-                </a>
-              </div>
-            </div>
-          ))}
-        </div>
+        {/* Project 3 */}
+        <ProjectCard
+          title="Book Library Management System"
+          date="April 2025"
+          tech="Java • JavaFX • OOP • Design Patterns"
+          bullets={[
+            "Built a JavaFX application using advanced object-oriented principles",
+            "Applied the State Design Pattern to manage user reward states",
+            "Designed UML class and use-case diagrams",
+            "Used interfaces and abstract classes for extensibility",
+            "Focused on clean, maintainable, and reusable code",
+          ]}
+          githubLink="https://github.com/YOUR_USERNAME/book-library-system"
+        />
       </div>
     </section>
+  );
+}
+
+/* ---------- Helper component ---------- */
+
+function ProjectCard({
+  title,
+  date,
+  tech,
+  bullets,
+  demoLink,
+  demoLabel,
+  githubLink,
+}: {
+  title: string;
+  date: string;
+  tech: string;
+  bullets: string[];
+  demoLink?: string;
+  demoLabel?: string;
+  githubLink?: string;
+}) {
+  return (
+   <div className="rounded-2xl bg-[#1f2a44] text-white border border-white/10 p-7
+                      hover:-translate-y-0.5 hover:shadow-md transition">
+      <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
+        <h3 className="text-2xl font-semibold">{title}</h3>
+        <span className="text-sm opacity-60 mt-1 md:mt-0">{date}</span>
+      </div>
+
+      <div className="text-sm font-medium opacity-80 mb-4">
+        {tech}
+      </div>
+
+      <ul className="list-disc list-inside space-y-2 opacity-90 mb-6">
+        {bullets.map((b, i) => (
+          <li key={i}>{b}</li>
+        ))}
+      </ul>
+
+      {/* Links */}
+      <div className="flex gap-4 flex-wrap">
+        {demoLink && (
+          <a
+            href={demoLink}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="px-4 py-2 rounded-lg border border-current/20
+                       font-medium text-sm
+                       hover:bg-current hover:text-white
+                       transition"
+          >
+            🎥 {demoLabel ?? "View Demo"}
+          </a>
+        )}
+
+        {githubLink && (
+          <a
+            href={githubLink}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="px-4 py-2 rounded-lg border border-current/20
+                       font-medium text-sm
+                       hover:bg-current hover:text-white
+                       transition"
+          >
+            💻 View on GitHub
+          </a>
+        )}
+      </div>
+    </div>
   );
 }
