@@ -1,398 +1,318 @@
-// app/page.tsx
-import Image from "next/image";
-import ThemeToggle from "../components/ThemeToggle";
-import Header from "../components/Header";
+"use client";
 
+import Image from "next/image";
+import Header from "../components/Header";
 import ProjectsSection from "@/components/ProjectsSection";
+import AboutSection from "@/components/AboutSection"; // Imported new component
+import { motion } from "framer-motion";
 
 export default function Home() {
   return (
-    <main className="min-h-screen transition-colors duration-300">
-
-
-
-
-
- <div id="top" />
+    <main className="min-h-screen ">
       <Header />
       
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 
+            w-[600px] h-[600px] rounded-full blur-[120px] 
+            bg-indigo-400/20 dark:bg-indigo-600/10 transition-all duration-700" />
+
+      {/* HERO SECTION */}
+      <section
+        id="home"
+        className="relative min-h-[90vh] flex flex-col items-center justify-center px-6 text-center"
+      >
+        <div className="absolute inset-0 -z-10 overflow-hidden">
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-blue-600/15 rounded-full blur-[140px]" />
+        </div>
+
+        <div className="relative mb-10">
+          <div className="absolute -inset-1 bg-gradient-to-r from-blue-500 via-indigo-500 to-indigo-600 rounded-full blur opacity-15" />
+          <Image
+            src="/me.jpg"
+            alt="Mohammad profile picture"
+            width={240}
+            height={240}
+            priority
+            className="relative rounded-full border-4 border-[#1e293b] object-cover shadow-xl"
+          />
+        </div>
+
+        <div className="relative max-w-4xl">
+          <div className="relative inline-block mb-6">
+            <div className="absolute inset-0 blur-3xl bg-indigo-500/10 -z-10 rounded-full" />
+            <h1 className="text-6xl md:text-8xl font-black tracking-tight">
+              <span className="snap-text">Hi, I’m </span>
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-indigo-500 to-violet-500">
+                Mohammad
+              </span>
+            </h1>
+          </div>
+
+          <p className="text-xl md:text-2xl max-w-3xl mx-auto leading-relaxed snap-text">
+            Computer Engineering student at{" "}
+            <span className="font-medium snap-text">
+              Toronto Metropolitan University
+            </span>
+            . Specializing in software, embedded systems, and hardware design
+          </p>
+
+          <div className="mt-12 flex flex-wrap justify-center gap-6">
+            <a
+              href="#projects"
+              className="px-10 py-4 rounded-full font-bold text-lg text-white bg-gradient-to-r from-blue-500 via-indigo-500 to-violet-600 shadow-md shadow-blue-500/20 transition-all duration-300 hover:-translate-y-1 hover:shadow-blue-500/30"
+            >
+              View My Work
+            </a>
+
+            <a
+              href="#contact"
+              className="px-10 py-4 rounded-full font-bold text-lg text-white bg-black border border-white/10 transition-all duration-300 hover:border-blue-500/40 hover:shadow-[0_0_16px_rgba(99,102,241,0.18)]"
+            >
+              Contact Me
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* PROJECTS SECTION */}
+      <section className="py-24 relative">
+        <ProjectsSection />
+      </section>
+
+      {/* TECHNOLOGIES SECTION */}
+      <section id="skills" className="px-6 py-24">
+        <div className="mx-auto max-w-6xl">
+          <div className="text-center mb-20">
+            <h2 className="text-5xl md:text-7xl font-black mb-6 tracking-tight 
+                           text-transparent bg-clip-text bg-gradient-to-r 
+                           from-indigo-500 via-blue-500 to-pink-500 
+                           drop-shadow-[0_0_15px_rgba(168,85,247,0.4)]">
+              Technical Skills
+            </h2>
+            <p className="text-xl max-w-2xl mx-auto snap-text opacity-80">
+              A snapshot of the tools and languages I use to solve problems.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {[
+              { title: "Languages", icon: "💻", color: "indigo", list: ["Python", "Java", "C/C++", "JavaScript", "TypeScript"] },
+              { title: "Frameworks", icon: "🧩", color: "purple", list: ["HTML","CSS","Node.js", "React.js", "Express.js","Next.js","Tailwind CSS",] },
+              { title: "Databases", icon: "🗄️", color: "emerald", list: ["MongoDB", "MySQL", "PostgreSQL","SQLite"] },
+              { title: "Tools", icon: "🛠️", color: "amber", list: ["Git", "GitHub", "VS Code", "Shell"] },
+            ].map((skill, i) => (
+              <div
+                key={i}
+                className={`group relative p-10 rounded-3xl bg-[#0b1120] border border-white/10 transition-all duration-300 hover:-translate-y-1 shadow-[0_10px_30px_rgba(0,0,0,0.45)] hover:shadow-[0_0_40px_rgba(99,102,241,0.25)]`}
+              >
+                <div className={`absolute inset-0 rounded-3xl bg-${skill.color}-500/10 opacity-0 blur-2xl transition-opacity duration-300 group-hover:opacity-100 -z-10`} />
+                <div className={`w-14 h-14 mb-8 rounded-2xl bg-${skill.color}-500/15 flex items-center justify-center transition-all duration-300 group-hover:scale-110`}>
+                  <span className="text-3xl">{skill.icon}</span>
+                </div>
+                <h3 className="text-2xl font-bold text-white mb-6">{skill.title}</h3>
+                <ul className="space-y-4 text-white/70 text-base font-medium">
+                  {skill.list.map((item, j) => (
+                    <li key={j} className="flex items-center gap-3">
+                      <span className={`w-2 h-2 bg-${skill.color}-500 rounded-full`} />
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ABOUT SECTION - Now separated */}
+      <AboutSection />
+
+     {/* CONTACT SECTION */}
 
 
-<section
-  id="top"
-  className="relative min-h-screen flex flex-col items-center justify-center px-6 text-center"
->
-  {/* Image */}
-  <Image
-    src="/me.jpg"
-    alt="Mohammad profile picture"
-    width={210}
-    height={210}
-    priority
-    className="rounded-full mb-10 border-2 border-current/20"
-  />
+<section id="contact" className="max-w-4xl mx-auto px-6 py-32 text-center">
+  <h2 className="text-6xl md:text-7xl font-black tracking-tighter mb-8">
+    <span className="snap-text">Let’s Start a </span>
+    <span className="text-blue-600 dark:text-blue-400">Conversation</span>
+  </h2>
 
-  {/* Text block */}
-  <div className="relative max-w-3xl">
-    {/* Accent line aligned to TEXT */}
-    <div className="absolute -left-6 md:-left-12 top-1/2 -translate-y-1/2 h-38 w-[4px] rounded-full bg-indigo-500/80" />
+  <p className="text-xl mb-12 snap-text opacity-80">
+    I’m currently looking for 2026 Internship & Co-op opportunities.
+    Whether you have a question or just want to say hi, my inbox is always open.
+  </p>
 
-    <h1 className="text-5xl md:text-6xl font-extrabold leading-tight tracking-tight">
-      Hi, I’m <span className="text-indigo-500">Mohammad</span>
-    </h1>
+  
 
-    <p className="mt-6 text-xl md:text-2xl text-current/70 max-w-3xl mx-auto">
-      I’m a Computer Engineering student at Toronto Metropolitan University.
-      This portfolio showcases my journey into tech.
-    </p>
+  {/* NEW BLOCK: Contact Info + Socials */}
+  <div className="text-left">
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+      {/* Contact Information */}
+      <div>
+        <h3 className="text-2xl font-black tracking-tight mb-4 text-blue-600 dark:text-blue-400">
+          Contact Information
+        </h3>
+
+        <div className="space-y-4 ">
+          {/* Email */}
+          <a
+            href="mailto:your-email@example.com"
+            className="group flex items-center gap-4 rounded-3xl border border-slate-200/60 dark:border-white/10 bg-[#111827] px-6 py-5 shadow-lg shadow-slate-200/40 dark:shadow-black/20 hover:-translate-y-0.5 hover:shadow-xl transition-all"
+          >
+            <div className="h-12 w-12 rounded-2xl bg-blue-600/10 dark:bg-blue-500/15 flex items-center justify-center">
+              {/* Mail icon */}
+              <svg
+                className="h-6 w-6 text-blue-600 dark:text-blue-400"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+              >
+                <path d="M4 4h16v16H4z" opacity="0" />
+                <path d="M4 8l8 5 8-5" />
+                <path d="M4 6h16v12H4z" />
+              </svg>
+            </div>
+
+            <div className="min-w-0">
+              <div className="font-extrabold text-slate-900 dark:text-white">
+                Email
+              </div>
+              <div className="text-slate-600 dark:text-slate-300 truncate">
+                mohammad.amir@torontomu.ca
+              </div>
+            </div>
+          </a>
+
+          {/* Phone */}
+          <a
+            href="tel:+13652288830"
+            className="group flex items-center gap-4 rounded-3xl border border-slate-200/60 dark:border-white/10 bg-[#111827] px-6 py-5 shadow-lg shadow-slate-200/40 dark:shadow-black/20 hover:-translate-y-0.5 hover:shadow-xl transition-all"
+          >
+            <div className="h-12 w-12 rounded-2xl bg-blue-600/10 dark:bg-blue-500/15 flex items-center justify-center">
+              {/* Phone icon */}
+              <svg
+                className="h-6 w-6 text-blue-600 dark:text-blue-400"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+              >
+                <path d="M22 16.92v3a2 2 0 0 1-2.18 2A19.8 19.8 0 0 1 3 5.18 2 2 0 0 1 5 3h3a2 2 0 0 1 2 1.72c.12.86.32 1.7.6 2.5a2 2 0 0 1-.45 2.11L9.1 10.9a16 16 0 0 0 4 4l1.57-1.05a2 2 0 0 1 2.11-.45c.8.28 1.64.48 2.5.6A2 2 0 0 1 22 16.92z" />
+              </svg>
+            </div>
+
+            <div className="min-w-0">
+              <div className="font-extrabold text-slate-900 dark:text-white">
+                Phone
+              </div>
+              <div className="text-slate-600 dark:text-slate-300 truncate">
+                647-563-6384
+              </div>
+            </div>
+          </a>
+
+          {/* Location */}
+          <div className="group flex items-center gap-4 rounded-3xl border border-slate-200/60 dark:border-white/10 bg-[#111827] px-6 py-5 shadow-lg shadow-slate-200/40 dark:shadow-black/20 hover:-translate-y-0.5 hover:shadow-xl transition-all">
+            <div className="h-12 w-12 rounded-2xl bg-blue-600/10 dark:bg-blue-500/15 flex items-center justify-center">
+              {/* Location icon */}
+              <svg
+                className="h-6 w-6 text-blue-600 dark:text-blue-400"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+              >
+                <path d="M21 10c0 6-9 12-9 12S3 16 3 10a9 9 0 1 1 18 0z" />
+                <path d="M12 10a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
+              </svg>
+            </div>
+
+            <div className="min-w-0">
+              <div className="font-extrabold text-slate-900 dark:text-white">
+                Location
+              </div>
+              <div className="text-slate-600 dark:text-slate-300 truncate">
+                Toronto, ON
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Follow Me */}
+      <div>
+        <h3 className="text-2xl font-black tracking-tight mb-4 text-blue-600 dark:text-blue-400">
+          Follow Me
+        </h3>
+
+        <div className="space-y-4">
+          {/* GitHub */}
+          <a
+            href="https://github.com/mxhmd15"
+            target="_blank"
+            rel="noreferrer"
+            className="group rounded-3xl border border-slate-200/60 dark:border-white/10 bg-[#111827] px-6 py-8 shadow-lg shadow-slate-200/40 dark:shadow-black/20 hover:-translate-y-0.5 hover:shadow-xl transition-all flex items-center gap-4"
+          >
+            <div className="h-12 w-12 rounded-2xl bg-blue-600/10 dark:bg-blue-500/15 flex items-center justify-center">
+              {/* GitHub icon */}
+              <svg
+                className="h-7 w-7 text-blue-600 dark:text-blue-400"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+              >
+                <path d="M12 .5a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2.2c-3.3.7-4-1.4-4-1.4-.5-1.2-1.2-1.5-1.2-1.5-1-.7.1-.7.1-.7 1.1.1 1.7 1.2 1.7 1.2 1 1.7 2.7 1.2 3.3.9.1-.7.4-1.2.7-1.5-2.6-.3-5.4-1.3-5.4-5.9 0-1.3.5-2.4 1.2-3.2-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.3 1.2a11.3 11.3 0 0 1 6 0C17.1 4.9 18 5.2 18 5.2c.6 1.6.2 2.8.1 3.1.8.8 1.2 1.9 1.2 3.2 0 4.6-2.8 5.6-5.4 5.9.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 .5z" />
+              </svg>
+            </div>
+
+            <div className="min-w-0">
+              <div className="font-extrabold text-slate-900 dark:text-white">
+                GitHub
+              </div>
+              <div className="text-slate-600 dark:text-slate-300 truncate">
+                @mxhmd15
+              </div>
+            </div>
+          </a>
+
+          {/* LinkedIn */}
+          <a
+            href="https://www.linkedin.com/in/mohammad-amir-9b23a2220/"
+            target="_blank"
+            rel="noreferrer"
+            className="group rounded-3xl border border-slate-200/60 dark:border-white/10 bg-[#111827] px-6 py-8 shadow-lg shadow-slate-200/40 dark:shadow-black/20 hover:-translate-y-0.5 hover:shadow-xl transition-all flex items-center gap-4"
+          >
+            <div className="h-12 w-12 rounded-2xl bg-blue-600/10 dark:bg-blue-500/15 flex items-center justify-center">
+              {/* LinkedIn icon */}
+              <svg
+                className="h-7 w-7 text-blue-600 dark:text-blue-400"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+              >
+                <path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.05-1.86-3.05-1.86 0-2.14 1.45-2.14 2.95v5.67H9.33V9h3.42v1.56h.05c.48-.9 1.64-1.86 3.38-1.86 3.61 0 4.28 2.38 4.28 5.47v6.28zM5.34 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14zM7.12 20.45H3.56V9h3.56v11.45z" />
+              </svg>
+            </div>
+
+            <div className="min-w-0">
+              <div className="font-extrabold text-slate-900 dark:text-white">
+                LinkedIn
+              </div>
+              <div className="text-slate-600 dark:text-slate-300 truncate">
+                /in/Mohammad-Amir
+              </div>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    {/* Footer */}
+    
   </div>
-</section>
-      {/* Projects Section */}  
-
-
-
-
-
-<ProjectsSection />
-
-
-      {/* Technologies*/}
-  <section id="projects" className="px-6 py-20 max-w-5xl mx-auto">
-        <h2 className="text-4xl font-bold mb-10 text-center">
-          
-        </h2>
 
         
-         
+        <footer className="py-16 text-center snap-text text-sm tracking-[0.2em] font-bold uppercase opacity-60">
+          © {new Date().getFullYear()} Mohammad Amir. All Rights Reserved.
+        </footer>
       </section>
-
-
-  {/* skills*/}
-
-{/* TECHNOLOGIES */}
-<section id="skills" className="px-6 py-20">
-  <div className="mx-auto max-w-5xl">
-    {/* Heading */}
-    <div className="text-center mb-12">
-      <h2 className="text-4xl font-bold tracking-tight">Technologies</h2>
-      <p className="mt-3 text-base opacity-80 max-w-2xl mx-auto">
-        Tools and technologies I’ve worked with across projects, coursework, and independent learning.
-      </p>
-    </div>
-
-    {/* Skill groups */}
-    <div className="grid md:grid-cols-2 gap-6">
-      {/* Frontend */}
-      <div className="rounded-2xl bg-[#1f2a44] text-white border border-white/10 p-7
-                      hover:-translate-y-0.5 hover:shadow-md transition">
-        <h3 className="text-xl font-bold mb-4">🎨 Frontend</h3>
-        <ul className="space-y-3 text-sm opacity-90">
-          <li>• React / Next.js</li>
-          <li>• TypeScript & JavaScript (ES6+)</li>
-          <li>• Tailwind CSS</li>
-          <li>• Responsive & accessible UI design</li>
-          <li>• Client-side state & component architecture</li>
-        </ul>
-      </div>
-
-      {/* Backend */}
-      <div className="rounded-2xl bg-[#1f2a44] text-white border border-white/10 p-7
-                      hover:-translate-y-0.5 hover:shadow-md transition">
-        <h3 className="text-xl font-bold mb-4">🧠 Backend & Server-Side</h3>
-        <ul className="space-y-3 text-sm opacity-90">
-          <li>• Node.js & Express</li>
-          <li>• RESTful API design</li>
-          <li>• Authentication & data validation</li>
-          <li>• Server-side logic & routing</li>
-          <li>• Understanding of system-level constraints</li>
-        </ul>
-      </div>
-
-      {/* Databases */}
-      <div className="rounded-2xl bg-[#1f2a44] text-white border border-white/10 p-7
-                      hover:-translate-y-0.5 hover:shadow-md transition">
-        <h3 className="text-xl font-bold mb-4">🗄️ Databases</h3>
-        <ul className="space-y-3 text-sm opacity-90">
-          <li>• PostgreSQL / SQL fundamentals</li>
-          <li>• MongoDB (NoSQL concepts)</li>
-          <li>• Data modeling & schema design</li>
-          <li>• Query optimization basics</li>
-        </ul>
-      </div>
-
-      {/* Systems / Embedded */}
-      <div className="rounded-2xl bg-[#1f2a44] text-white border border-white/10 p-7
-                      hover:-translate-y-0.5 hover:shadow-md transition">
-        <h3 className="text-xl font-bold mb-4">🔌 Systems & Embedded</h3>
-        <ul className="space-y-3 text-sm opacity-90">
-          <li>• Embedded C / C++</li>
-          <li>• Microcontrollers & low-level programming</li>
-          <li>• Hardware–software interaction</li>
-          <li>• Debugging at the system level</li>
-        </ul>
-      </div>
-
-      {/* Tools */}
-     
-
-                        <div className="
-    rounded-2xl
-    bg-[#1f2a44]
-    text-white
-    border border-white/10
-    p-7
-    hover:-translate-y-0.5
-    hover:shadow-lg
-    transition
-    md:col-span-2
-  "
->
-
-        <h3 className="text-xl font-bold mb-4">🛠️ Tools & Workflow</h3>
-        <ul className="grid sm:grid-cols-2 gap-3 text-sm opacity-90">
-          <li>• Git & GitHub (version control)</li>
-          <li>• Linux / command line</li>
-          <li>• VS Code & developer tooling</li>
-          <li>• Debugging & performance profiling</li>
-          <li>• Documentation & technical writing</li>
-          <li>• Agile-style project organization</li>
-        </ul>
-      </div>
-    </div>
-
-    {/* Footer line */}
-    <p className="mt-10 text-center text-sm opacity-70 max-w-3xl mx-auto">
-      I continuously expand my toolkit by building projects, exploring new technologies,
-      and applying what I learn in practical, real-world scenarios.
-    </p>
-  </div>
-</section>
-
-
-
-{/*About me  */}
-{/* ABOUT */}
-<section id="about" className="px-6 py-20">
-  <div className="mx-auto max-w-5xl">
-    <div className="text-center mb-12">
-      <h2 className="text-4xl font-bold tracking-tight">About Me</h2>
-      <p className="mt-3 text-base opacity-80 max-w-2xl mx-auto">
-        Computer Engineering student at Toronto Metropolitan University,
-      breaking into tech through projects, learning as I go, and a lot of curiosity!
-      </p>
-    </div>
-
-    {/* Main story card */}
-    <div className="rounded-2xl bg-[#1f2a44] text-white border border-white/10 p-8
-                    shadow-sm hover:shadow-md transition
-                    hover:-translate-y-0.5">
-      <div className="grid md:grid-cols-3 gap-8">
-        {/* Left: quick highlights */}
-        <div className="md:col-span-1">
-          <div className="space-y-3">
-            <div className="inline-flex items-center gap-2 rounded-full border border-current/10 px-3 py-1 text-sm">
-              🎓 <span className="font-semibold">TMU • 3rd Year</span>
-            </div>
-             <div className="inline-flex items-center gap-2 rounded-full border border-current/10 px-3 py-1 text-sm">
-              🚀 <span className="font-semibold">Seeking Opportunities</span>
-              
-            </div>
-
-<div className="inline-flex items-center gap-2 rounded-full border border-current/10 px-3 py-1 text-sm">
-              📈 <span className="font-semibold">Enjoys Fast-Paced Environments </span>
-              
-            </div>
-
-            <div className="inline-flex items-center gap-2 rounded-full border border-current/10 px-3 py-1 text-sm">
-              🧭 <span className="font-semibold">First-Generation Student</span>
-            </div>
-           
-
-
-
-          </div>
-
-          <div className="mt-6 text-sm opacity-80 leading-relaxed">
-            I excel at bringing computer & software ideas into reality.
-
-          </div>
-        </div>
-
- {/* I excel at bringing computer & software ideas into reality.
-
-  From full-stack web apps, Android apps, to machine learning applications in IoT devices and much more.*/}
-
-        {/* Right: story */}
-        <div className="md:col-span-2 space-y-5 leading-relaxed">
-<p>🎓 As a first-generation university student at Toronto Metropolitan University 
-  in my third year of Computer Engineering,
-   building my path into the tech industry through hands-on projects</p>
-
-          <p>
-            🛠️ Without a traditional background in the industry, I’ve learned to be resourceful
-            and self-driven, teaching myself new tools, turning ideas into working projects,
-            and documenting my growth through this portfolio.
-          </p>
-
-          <p>
-            Each project represents not just a technical outcome, but a meaningful step in my
-            journey as an engineer.
-          </p>
-
-          <p>
-            🚀 This portfolio reflects my progress, technical skill set, and commitment to becoming
-            a capable, thoughtful, and impactful engineer. I’m actively seeking opportunities
-            where I can learn, contribute meaningfully, apply my skills to real-world problems, and grow
-            within the tech industry.
-          </p>
-        </div>
-      </div>
-    </div>
-
-    {/* Two-column grids */}
-    <div className="mt-10 grid md:grid-cols-2 gap-6">
-      {/* Interests */}
-      <div className="rounded-2xl bg-[#1f2a44] text-white border border-white/10 p-7
-                      hover:-translate-y-0.5 hover:shadow-md transition">
-        <h3 className="text-xl font-bold mb-4">💡 Technical Interests & Focus Areas</h3>
-        <ul className="space-y-3 opacity-90">
-          <li className="flex gap-3">
-            <span>⚙️</span>
-            <span><span className="font-semibold">Full-Stack & Application Development</span></span>
-          </li>
-          <li className="flex gap-3">
-            <span>🧠</span>
-            <span><span className="font-semibold">Backend & Server-Side Systems</span></span>
-          </li>
-          <li className="flex gap-3">
-            <span>🔌</span>
-            <span><span className="font-semibold">Embedded Systems Engineering</span></span>
-          </li>
-          <li className="flex gap-3">
-            <span>🤖</span>
-            <span><span className="font-semibold">AI / Machine Learning Applications</span></span>
-          </li>
-          <li className="flex gap-3">
-            <span>⚡</span>
-            <span><span className="font-semibold">Automation & Developer Productivity</span></span>
-          </li>
-        </ul>
-      </div>
-
-      {/* Strengths */}
-      <div className="rounded-2xl bg-[#1f2a44] text-white border border-white/10 p-7
-                      hover:-translate-y-0.5 hover:shadow-md transition">
-        <h3 className="text-xl font-bold mb-4">🌱 Strengths & Mindset</h3>
-        <ul className="space-y-3 opacity-90">
-          <li className="flex gap-3">
-            <span>🔥</span>
-            <span><span className="font-semibold">Strong initiative</span> and ownership over projects</span>
-          </li>
-          <li className="flex gap-3">
-            <span>📈</span>
-            <span><span className="font-semibold">Highly motivated</span> and detail-oriented</span>
-          </li>
-          <li className="flex gap-3">
-            <span>🧩</span>
-            <span><span className="font-semibold">Organized</span>, disciplined, and consistent</span>
-          </li>
-          <li className="flex gap-3">
-            <span>⚡</span>
-            <span><span className="font-semibold">Quick learner</span> with a problem-solving mindset</span>
-          </li>
-        </ul>
-      </div>
-    </div>
-
-    {/* Callout */}
-   <div
-  className="
-    mt-10
-    rounded-2xl
-    bg-[#1f2a44]
-    text-white
-    border border-white/10
-    p-6
-    flex flex-col md:flex-row
-    items-start md:items-center
-    justify-between
-    gap-4
-    transition
-    hover:shadow-lg
-  "
->
-      <div>
-        <div className="text-lg font-bold">Open to Opportunities</div>
-        <div className="text-sm opacity-80">
-          Internships • Co-op • Junior developer roles 
-        </div>
-      </div>
-
-      <a
-        href="#contact"
-        className="px-5 py-3 rounded-xl font-semibold border border-current/20
-                   hover:-translate-y-0.5 hover:shadow-md transition"
-      >
-        Let’s connect →
-      </a>
-    </div>
-  </div>
-</section>
-
-
-
-
-
-
-   
-
-    
-
-      {/* ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| */}
-
-
-      {/* CONTACT */}
-      <section
-        id="contact"
-        className="min-h-screen flex flex-col items-center justify-center px-6 text-center"
-      >
-        <h2 className="text-4xl font-bold mb-6">
-          Contact
-        </h2>
-        <p className="opacity-80 mb-6 max-w-xl">
-          Let’s build something together. Email me and I’ll get back to you.
-        </p>
-
-<a
-  href="/resume.pdf"
-  target="_blank"
-  className="px-6 py-3 mb-2 rounded-lg border font-medium hover:opacity-90 transition"
->
-  Download Resume
-
-</a>
-
-
-
-        <a
-          href="mailto:your@email.com"
-          className="px-6 py-3 rounded-lg font-medium border hover:opacity-90 transition"
-        >
-          Email Me
-        </a>
-      </section>
-
-      
-<div className="flex gap-6 justify-center">
-  <a href="mailto:you@email.com">Email</a>
-  <a href="https://github.com/yourname">GitHub</a>
-  <a href="https://linkedin.com/in/yourname">LinkedIn</a>
-</div>
-
-
-
-
     </main>
   );
 }
-
