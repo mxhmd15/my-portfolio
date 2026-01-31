@@ -14,45 +14,41 @@ type Project = {
 const projects: Project[] = [
   {
     title: "Media Center Embedded System",
-    
- description: `An embedded media center that brings multiple features into one 
- menu-driven system. User can navigate through an LCD interface using a joystick to 
- play audio, view images, and launch built-in games. The project focuses on creating a
-smooth, responsive user experience while managing real-time input
-and multimedia functionality on embedded hardware.`,
-
-
-
-
+    description: `An embedded media center that brings multiple features into one 
+menu-driven system. Users can navigate through an LCD interface using a joystick to 
+play audio, view images, and launch built-in games. The project focuses on creating a
+smooth, responsive user experience while managing real-time input and multimedia 
+functionality on embedded hardware.`,
     imageSrc: "/Embedded-systems.jpg",
     tags: ["C", "ARM Cortex-M3", "Keil uVision"],
     color: "emerald",
-    codeUrl: "#",
-    demoUrl: "#",
+    codeUrl: "https://github.com/mxhmd15/Media-Centre-Embedded-Systems",
+    demoUrl: "https://www.youtube.com/watch?v=F2NMGu9kf2c",
     demoLabel: "Watch Demo",
   },
   {
     title: "Academic Workload Planner",
-description: `A full-stack academic planner that helps users organize coursework, deadlines, and events in one place. 
-The application allows users to create, update, and manage schedules with filtering and search features, 
-providing a clean and efficient way to track academic workload through a responsive web interface.`,
+    description: `A full-stack academic planner that helps users organize coursework, 
+deadlines, and events in one place. The application allows users to create, update, and 
+manage schedules with filtering and search features, providing a clean and efficient 
+way to track academic workload through a responsive web interface.`,
     imageSrc: "/academics.png",
-    tags: ["React", "Node.js", "Express", "mongoDB"],
+    tags: ["React", "Node.js", "Express", "MongoDB"],
     color: "purple",
-    codeUrl: "#",
+    codeUrl: "https://github.com/mxhmd15/Academic-Workload-Planner",
   },
   {
     title: "Book Library Management System",
-description: `A desktop-based book library management application that allows users to browse, manage, and track books through a structured JavaFX interface. 
-The project focuses on clean object-oriented design, using state-based behavior to handle different user interactions while keeping the
- system modular and easy to extend.`,
+    description: `A desktop-based book library management application that allows users 
+to browse, manage, and track books through a structured JavaFX interface. The project 
+focuses on clean object-oriented design, using state-based behavior to handle different 
+user interactions while keeping the system modular and easy to extend.`,
     imageSrc: "/bookstore.png",
     tags: ["Java", "JavaFX"],
     color: "indigo",
-    codeUrl: "#",
+    codeUrl: "https://github.com/mxhmd15/Book-Library",
   },
 ];
-
 export default function ProjectsSection() {
   return (
     /* Remove text-white from the section class below */
@@ -101,24 +97,14 @@ function ProjectCard({ project }: { project: Project }) {
       </div>
 
       <div className="p-10">
-        {/* Title - Increased to text-3xl */}
-<h3
-  className={`
-    text-3xl font-bold mb-4
-    text-white
-    transition-colors duration-300
-    ${theme.split(" ")[1]}
-  `}
->
+        <h3 className={`text-3xl font-bold mb-4 text-white transition-colors duration-300 ${theme.split(" ")[1]}`}>
           {project.title}
         </h3>
 
-        {/* Description - Increased to text-base/lg */}
         <p className="text-slate-400 text-lg leading-relaxed">
           {project.description}
         </p>
 
-        {/* Themed Tags - Larger padding and text */}
         <div className="mt-8 flex flex-wrap gap-3">
           {project.tags.map((t) => (
             <span key={t} className={`px-4 py-1.5 rounded-full text-xs font-black uppercase tracking-widest border border-white/5 ${theme.split(' ').slice(2).join(' ')}`}>
@@ -127,15 +113,25 @@ function ProjectCard({ project }: { project: Project }) {
           ))}
         </div>
 
-        {/* Actions - Larger buttons */}
+        {/* Updated Action Links */}
         <div className="mt-10 flex gap-4">
           {project.codeUrl && (
-            <a href={project.codeUrl} className="flex-1 flex items-center justify-center gap-3 rounded-2xl py-4 text-base font-bold bg-white/5 border border-white/10 hover:bg-white/10 transition-all text-white">
+            <a 
+              href={project.codeUrl} 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="flex-1 flex items-center justify-center gap-3 rounded-2xl py-4 text-base font-bold bg-white/5 border border-white/10 hover:bg-white/10 transition-all text-white"
+            >
               <IconCode /> Code
             </a>
           )}
           {project.demoUrl && (
-            <a href={project.demoUrl} className={`flex-1 flex items-center justify-center gap-3 rounded-2xl py-4 text-base font-bold transition-all text-white ${dotColor} shadow-lg shadow-black/40`}>
+            <a 
+              href={project.demoUrl} 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className={`flex-1 flex items-center justify-center gap-3 rounded-2xl py-4 text-base font-bold transition-all text-white ${dotColor} shadow-lg shadow-black/40`}
+            >
               <IconExternal /> {project.demoLabel}
             </a>
           )}
