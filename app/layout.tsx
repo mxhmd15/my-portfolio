@@ -30,7 +30,15 @@ export const metadata: Metadata = {
       },
     ],
     type: "website",
+
+
   },
+
+
+verification: {
+    google: "google-site-verification: googlec07c39d1b74d3e34.html",
+  },
+
 };
 
 
