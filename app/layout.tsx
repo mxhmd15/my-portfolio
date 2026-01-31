@@ -1,8 +1,6 @@
 import "./globals.css";
 import type { Metadata } from "next";
 
-import type { Metadata } from "next";
-
 export const metadata: Metadata = {
   title: "Mohammad Amir | Computer Engineering Portfolio",
   description:
@@ -30,17 +28,13 @@ export const metadata: Metadata = {
       },
     ],
     type: "website",
-
-
   },
 
-
-verification: {
-    google: "google-site-verification: googlec07c39d1b74d3e34.html",
+  // ✅ Google Search Console verification
+  verification: {
+    google: "googlec07c39d1b74d3e34",
   },
-
 };
-
 
 export default function RootLayout({
   children,
