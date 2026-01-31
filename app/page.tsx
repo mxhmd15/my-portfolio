@@ -4,7 +4,6 @@ import Image from "next/image";
 import Header from "../components/Header";
 import ProjectsSection from "@/components/ProjectsSection";
 import AboutSection from "@/components/AboutSection"; // Imported new component
-import { motion } from "framer-motion";
 
 export default function Home() {
   return (

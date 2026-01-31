@@ -6,34 +6,33 @@ export default function ThemeToggle() {
   const [mounted, setMounted] = useState(false);
   const [isDark, setIsDark] = useState(false);
 
-  // Apply theme (ONLY toggles the class — Tailwind handles text colors)
   const applyTheme = (dark: boolean) => {
     const html = document.documentElement;
-
     html.classList.toggle("dark", dark);
     localStorage.setItem("theme", dark ? "dark" : "light");
-
-    // OPTIONAL: if you want to force background only (NOT text)
-    // comment these out if you want Tailwind to handle bg too
-    // html.style.backgroundColor = dark ? "#0b1220" : "#f3f8ff";
   };
 
   useEffect(() => {
-    setMounted(true);
+    // Wrap everything in one frame to prevent cascading render warnings
+    const id = requestAnimationFrame(() => {
+      // 1) Determine the correct theme
+      const saved = localStorage.getItem("theme");
+      let darkValue = false;
 
-    // 1) Try saved theme
-    const saved = localStorage.getItem("theme");
-    if (saved === "dark" || saved === "light") {
-      const dark = saved === "dark";
-      setIsDark(dark);
-      applyTheme(dark);
-      return;
-    }
+      if (saved === "dark" || saved === "light") {
+        darkValue = saved === "dark";
+      } else {
+        // Fallback to system preference
+        darkValue = window.matchMedia?.("(prefers-color-scheme: dark)").matches ?? false;
+      }
 
-    // 2) Fallback: system preference (first visit)
-    const prefersDark = window.matchMedia?.("(prefers-color-scheme: dark)").matches ?? false;
-    setIsDark(prefersDark);
-    applyTheme(prefersDark);
+      // 2) Apply and update state once
+      setIsDark(darkValue);
+      applyTheme(darkValue);
+      setMounted(true);
+    });
+
+    return () => cancelAnimationFrame(id);
   }, []);
 
   const toggleTheme = () => {
@@ -42,7 +41,7 @@ export default function ThemeToggle() {
     applyTheme(newDark);
   };
 
-  // Prevent layout shift while mounting
+  // Prevent layout shift by rendering a placeholder of the same size
   if (!mounted) return <div className="h-10 w-20" />;
 
   return (
@@ -76,7 +75,6 @@ export default function ThemeToggle() {
           <span className="absolute left-8 top-4.5 h-1 w-1 rounded-full bg-white/90" />
           <span className="absolute left-9 top-7 h-1.5 w-1.5 rounded-full bg-white/90" />
           <span className="absolute left-5 top-7 h-1 w-1 rounded-full bg-white/70" />
-          <span className="absolute left-9 top-2.5 h-6 w-6 rounded-full bg-[#0b1220]" />
         </>
       )}
     </button>
