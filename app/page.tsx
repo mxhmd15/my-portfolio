@@ -15,73 +15,80 @@ export default function Home() {
             bg-indigo-400/20 dark:bg-indigo-600/10 transition-all duration-700" />
 
       {/* HERO SECTION */}
-      <section
-        id="home"
-        className="relative min-h-[90vh] flex flex-col items-center justify-center px-6 text-center"
+      {/* HERO SECTION */}
+<section
+  id="home"
+  className="relative min-h-[50vh] flex flex-col items-center justify-center px-6 text-center pt-20 md:pt-32" 
+>
+  {/* Reduced min-h from 90vh to 80vh and added pt (padding-top) to control vertical position */}
+  
+  <div className="absolute inset-0 -z-10 overflow-hidden">
+    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-blue-600/15 rounded-full blur-[140px]" />
+  </div>
+
+  <div className="relative mb-6 md:mb-8"> 
+    {/* Reduced margin-bottom from 10 to 6/8 to bring text closer to photo */}
+    <div className="absolute -inset-1 bg-gradient-to-r from-blue-500 via-indigo-500 to-indigo-600 rounded-full blur opacity-15" />
+    <Image
+      src="/me.jpg"
+      alt="Mohammad profile picture"
+      width={200} 
+      height={340}
+      priority
+      className="relative rounded-full border-4 border-[#1e293b] object-cover shadow-xl w-44 h-44 md:w-52 md:h-52" 
+    />
+    {/* Scaled photo down slightly: w-44 on mobile, w-52 on desktop (was 60) */}
+  </div>
+
+  <div className="relative max-w-4xl">
+    <div className="relative inline-block mb-4 md:mb-6"> 
+      {/* Reduced margin-bottom to pull description up */}
+      <div className="absolute inset-0 blur-3xl bg-indigo-500/10 -z-10 rounded-full" />
+      <h1 className="text-4xl md:text-7xl font-black tracking-tight">
+        <span className="snap-text">Hi, I’m </span>
+        <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-indigo-500 to-violet-500">
+          Mohammad
+        </span>
+      </h1>
+    </div>
+
+    <p className="text-lg md:text-xl max-w-3xl mx-auto leading-relaxed snap-text px-4">
+      Computer Engineering student at{" "}
+      <span className="font-medium snap-text">
+        Toronto Metropolitan University
+      </span>
+      . Specializing in software, embedded systems, and hardware design
+    </p>
+
+    <div className="mt-8 md:mt-10 flex flex-col md:flex-row justify-center gap-4 md:gap-6">
+      {/* Reduced mt (margin-top) for buttons and gap for mobile stacking */}
+      <a
+        href="#projects"
+        className="px-8 py-3.5 md:px-10 md:py-4 rounded-full font-bold text-base md:text-lg text-white bg-gradient-to-r from-blue-500 via-indigo-500 to-violet-600 shadow-md shadow-blue-500/20 transition-all duration-300 hover:-translate-y-1 hover:shadow-blue-500/30"
       >
-        <div className="absolute inset-0 -z-10 overflow-hidden">
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-blue-600/15 rounded-full blur-[140px]" />
-        </div>
+        View My Work
+      </a>
 
-        <div className="relative mb-10">
-          <div className="absolute -inset-1 bg-gradient-to-r from-blue-500 via-indigo-500 to-indigo-600 rounded-full blur opacity-15" />
-          <Image
-            src="/me.jpg"
-            alt="Mohammad profile picture"
-            width={240}
-            height={240}
-            priority
-            className="relative rounded-full border-4 border-[#1e293b] object-cover shadow-xl"
-          />
-        </div>
-
-        <div className="relative max-w-4xl">
-          <div className="relative inline-block mb-6">
-            <div className="absolute inset-0 blur-3xl bg-indigo-500/10 -z-10 rounded-full" />
-            <h1 className="text-6xl md:text-8xl font-black tracking-tight">
-              <span className="snap-text">Hi, I’m </span>
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-indigo-500 to-violet-500">
-                Mohammad
-              </span>
-            </h1>
-          </div>
-
-          <p className="text-xl md:text-2xl max-w-3xl mx-auto leading-relaxed snap-text">
-            Computer Engineering student at{" "}
-            <span className="font-medium snap-text">
-              Toronto Metropolitan University
-            </span>
-            . Specializing in software, embedded systems, and hardware design
-          </p>
-
-          <div className="mt-12 flex flex-wrap justify-center gap-6">
-            <a
-              href="#projects"
-              className="px-10 py-4 rounded-full font-bold text-lg text-white bg-gradient-to-r from-blue-500 via-indigo-500 to-violet-600 shadow-md shadow-blue-500/20 transition-all duration-300 hover:-translate-y-1 hover:shadow-blue-500/30"
-            >
-              View My Work
-            </a>
-
-            <a
-              href="#contact"
-              className="px-10 py-4 rounded-full font-bold text-lg text-white bg-black border border-white/10 transition-all duration-300 hover:border-blue-500/40 hover:shadow-[0_0_16px_rgba(99,102,241,0.18)]"
-            >
-              Contact Me
-            </a>
-          </div>
-        </div>
-      </section>
-
+      <a
+        href="#contact"
+        className="px-8 py-3.5 md:px-10 md:py-4 rounded-full font-bold text-base md:text-lg text-white bg-black border border-white/10 transition-all duration-300 hover:border-blue-500/40 hover:shadow-[0_0_16px_rgba(99,102,241,0.18)]"
+      >
+        Contact Me
+      </a>
+    </div>
+  </div>
+</section>
       {/* PROJECTS SECTION */}
-      <section className="py-24 relative">
-        <ProjectsSection />
-      </section>
+     <section id="projects" className="pt-10 pb-24 relative scroll-mt-24">
+  <ProjectsSection />
+</section>
+
 
       {/* TECHNOLOGIES SECTION */}
       <section id="skills" className="px-6 py-24">
         <div className="mx-auto max-w-6xl">
           <div className="text-center mb-20">
-            <h2 className="text-5xl md:text-7xl font-black mb-6 tracking-tight 
+            <h2 className="text-5xl md:text-5xl font-black mb-6 tracking-tight 
                            text-transparent bg-clip-text bg-gradient-to-r 
                            from-indigo-500 via-blue-500 to-pink-500 
                            drop-shadow-[0_0_15px_rgba(168,85,247,0.4)]">
@@ -182,32 +189,7 @@ export default function Home() {
           </a>
 
           {/* Phone */}
-          <a
-            href="tel:+13652288830"
-            className="group flex items-center gap-4 rounded-3xl border border-slate-200/60 dark:border-white/10 bg-[#111827] px-6 py-5 shadow-lg shadow-slate-200/40 dark:shadow-black/20 hover:-translate-y-0.5 hover:shadow-xl transition-all"
-          >
-            <div className="h-12 w-12 rounded-2xl bg-blue-600/10 dark:bg-blue-500/15 flex items-center justify-center">
-              {/* Phone icon */}
-              <svg
-                className="h-6 w-6 text-blue-600 dark:text-blue-400"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-              >
-                <path d="M22 16.92v3a2 2 0 0 1-2.18 2A19.8 19.8 0 0 1 3 5.18 2 2 0 0 1 5 3h3a2 2 0 0 1 2 1.72c.12.86.32 1.7.6 2.5a2 2 0 0 1-.45 2.11L9.1 10.9a16 16 0 0 0 4 4l1.57-1.05a2 2 0 0 1 2.11-.45c.8.28 1.64.48 2.5.6A2 2 0 0 1 22 16.92z" />
-              </svg>
-            </div>
-
-            <div className="min-w-0">
-              <div className="font-extrabold text-slate-900 dark:text-white">
-                Phone
-              </div>
-              <div className="text-slate-600 dark:text-slate-300 truncate">
-                647-563-6384
-              </div>
-            </div>
-          </a>
+         
 
           {/* Location */}
           <div className="group flex items-center gap-4 rounded-3xl border border-slate-200/60 dark:border-white/10 bg-[#111827] px-6 py-5 shadow-lg shadow-slate-200/40 dark:shadow-black/20 hover:-translate-y-0.5 hover:shadow-xl transition-all">

@@ -13,20 +13,16 @@ export default function ThemeToggle() {
   };
 
   useEffect(() => {
-    // Wrap everything in one frame to prevent cascading render warnings
     const id = requestAnimationFrame(() => {
-      // 1) Determine the correct theme
       const saved = localStorage.getItem("theme");
       let darkValue = false;
 
       if (saved === "dark" || saved === "light") {
         darkValue = saved === "dark";
       } else {
-        // Fallback to system preference
         darkValue = window.matchMedia?.("(prefers-color-scheme: dark)").matches ?? false;
       }
 
-      // 2) Apply and update state once
       setIsDark(darkValue);
       applyTheme(darkValue);
       setMounted(true);
@@ -41,40 +37,40 @@ export default function ThemeToggle() {
     applyTheme(newDark);
   };
 
-  // Prevent layout shift by rendering a placeholder of the same size
-  if (!mounted) return <div className="h-10 w-20" />;
+  // 1. Adjusted placeholder size to match the new button (h-8 w-14)
+  if (!mounted) return <div className="h-8 w-14" />;
 
   return (
     <button
       type="button"
       onClick={toggleTheme}
       aria-label="Toggle theme"
-      className={`relative h-10 w-20 rounded-full transition-all duration-300 shadow-lg
+      /* 2. Changed h-10 w-20 -> h-8 w-14 */
+      className={`relative h-8 w-14 rounded-full transition-all duration-300 shadow-md
         ${isDark ? "bg-[#0b1220]" : "bg-[#7da6ff]"}
       `}
     >
-      {/* Moving Knob */}
+      {/* Moving Knob - Size reduced from h-7 w-7 to h-6 w-6 */}
       <span
-        className={`absolute top-1.5 left-1.5 h-7 w-7 rounded-full bg-white transition-transform duration-300 z-10
-          ${isDark ? "translate-x-10" : "translate-x-0"}
+        className={`absolute top-1 left-1 h-6 w-6 rounded-full bg-white transition-transform duration-300 z-10
+          ${isDark ? "translate-x-6" : "translate-x-0"}
         `}
       />
 
-      {/* Light-mode bubbles */}
+      {/* Light-mode bubbles - Re-positioned for smaller width */}
       {!isDark && (
         <>
-          <span className="absolute left-11 top-4 h-1.5 w-1.5 rounded-full bg-white/90" />
-          <span className="absolute left-14 top-6 h-1 w-1 rounded-full bg-white/70" />
+          <span className="absolute left-8 top-3 h-1 w-1 rounded-full bg-white/90" />
+          <span className="absolute left-10 top-5 h-0.5 w-0.5 rounded-full bg-white/70" />
         </>
       )}
 
-      {/* Dark-mode moon + stars */}
+      {/* Dark-mode moon + stars - Re-positioned for smaller width */}
       {isDark && (
         <>
-          <span className="absolute left-4 top-3 h-1.5 w-1.5 rounded-full bg-white/90" />
-          <span className="absolute left-8 top-4.5 h-1 w-1 rounded-full bg-white/90" />
-          <span className="absolute left-9 top-7 h-1.5 w-1.5 rounded-full bg-white/90" />
-          <span className="absolute left-5 top-7 h-1 w-1 rounded-full bg-white/70" />
+          <span className="absolute left-3 top-2 h-1 w-1 rounded-full bg-white/90" />
+          <span className="absolute left-5 top-5 h-1 w-1 rounded-full bg-white/90" />
+          <span className="absolute left-2.5 top-5 h-0.5 w-0.5 rounded-full bg-white/70" />
         </>
       )}
     </button>

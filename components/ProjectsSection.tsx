@@ -55,11 +55,14 @@ export default function ProjectsSection() {
 <section id="projects" className="max-w-7xl mx-auto px-6 py-32">
   {/* Header - Scaled Up */}
   <div className="text-center mb-24">
-    <h2 className="text-6xl md:text-7xl font-black mb-6 tracking-tight">
+    <h2 className="text-5xl md:text-5xl font-black mb-6 tracking-tight">
       {/* Apply snap-text here to make it turn black instantly */}
       <span className="snap-text">My </span>
-      <span className="text-indigo-400 ">Projects</span>
-    </h2>
+    {/* "Projects" - Enhanced Cobalt Blue Gradient */}
+  <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-blue-500 to-indigo-600 dark:from-blue-400 dark:via-blue-500 dark:to-indigo-400 drop-shadow-[0_0_15px_rgba(59,130,246,0.2)]">
+    Projects
+  </span>
+</h2>
     <div className="h-2 w-32 bg-indigo-500 mx-auto rounded-full shadow-[0_0_20px_rgba(99,102,241,0.6)]" />
   </div>
 

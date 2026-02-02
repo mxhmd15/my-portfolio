@@ -97,12 +97,14 @@ export default function Header() {
 
               {/* Name Stack - Updated to Cobalt Blue Gradient */}
               <div className="flex flex-col items-start leading-[0.85] select-none">
-                <span className="text-3xl md:text-4xl font-black tracking-tighter text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-blue-700 drop-shadow-[0_0_6px_rgba(37,99,235,0.25)]">
-                  Mohammad
-                </span>
-                <span className="text-4xl md:text-5xl font-black tracking-tighter text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-blue-600 drop-shadow-[0_0_6px_rgba(37,99,235,0.25)]">
-                  Amir
-                </span>
+              <span className="text-2xl md:text-3xl font-black tracking-tighter text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-blue-600 drop-shadow-[0_0_6px_rgba(37,99,235,0.2)]">
+    Mohammad
+  </span>
+  
+  {/* Amir - Reduced from 4xl/5xl to 3xl/4xl */}
+  <span className="text-3xl md:text-4xl font-black tracking-tighter text-transparent bg-clip-text bg-gradient-to-r from-blue-300 to-blue-500 drop-shadow-[0_0_6px_rgba(37,99,235,0.2)]">
+    Amir
+  </span>
               </div>
             </div>
           </a>
@@ -116,7 +118,7 @@ export default function Header() {
             <span className="h-6 w-px bg-white/20" />
 
             <a
-              href="https://github.com/mxhmd15"
+              href="https://github.com/YOUR_GITHUB"
               target="_blank"
               rel="noopener noreferrer"
               className="text-2xl opacity-70 hover:opacity-100 hover:text-blue-500 hover:-translate-y-1 transition"
@@ -124,7 +126,7 @@ export default function Header() {
               <FaGithub />
             </a>
             <a
-              href="https://www.linkedin.com/in/mohammad-amir-9b23a2220/"
+              href="https://linkedin.com/in/YOUR_LINKEDIN"
               target="_blank"
               rel="noopener noreferrer"
               className="text-2xl opacity-70 hover:opacity-100 hover:text-blue-500 hover:-translate-y-1 transition"
@@ -158,7 +160,7 @@ export default function Header() {
 
         {/* Mobile dropdown */}
         {open && (
-          <div className="md:hidden border-t border-white/5 bg-[#0b1120]/90 backdrop-blur-xl">
+          <div className="md:hidden border-t border-white/5 bg-[#0b1120]/0 backdrop-blur-xl">
             <div className="mx-auto max-w-6xl px-10 py-8 flex flex-col gap-8">
               {links.map((l) => (
                 <NavLink key={l.id} id={l.id} label={l.label} />

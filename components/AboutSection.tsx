@@ -21,7 +21,7 @@ const AboutSection = () => {
               <span className="font-medium snap-text">
                 Toronto Metropolitan University
               </span>
-              . Specializing in software and embedded systems.
+              , specializing in Software Development and Embedded Systems, I am passionate about tech industry trends and innovations.
             </p>
 
             <p className="text-xl md:text-2xl max-w-3xl mx-auto leading-relaxed snap-text">

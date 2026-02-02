@@ -9,7 +9,6 @@ export const metadata: Metadata = {
     "Mohammad Amir",
     "Computer Engineering",
     "Portfolio",
-    "Mohammad Amir Mohammad Nuri",
     "Software Engineer",
     "Toronto Metropolitan University",
   ],
@@ -19,20 +18,20 @@ export const metadata: Metadata = {
       "Computer Engineering student specializing in software and embedded systems.",
     url: "https://mohammad-amir.netlify.app",
     siteName: "Mohammad Amir Portfolio",
-    images: [
-      {
-        url: "/og.png",
-        width: 1200,
-        height: 630,
-        alt: "Mohammad Amir Portfolio",
-      },
-    ],
     type: "website",
   },
 
-  // ✅ Google Search Console verification
+
+icons: {
+    icon: "/icon.png", // Assuming you named it icon.png
+    shortcut: "/favicon.png",
+    apple: "/apple-touch-icon.png", // Optional: for iPhone home screen bookmarks
+  },
+
+
+  // ✅ Google Search Console verification (HTML TAG METHOD)
   verification: {
-    google: "googlec07c39d1b74d3e34",
+    google: "iSNTFqb-8-SRVGxmNULzJ1pbbq25odGagstWO9agBQ8",
   },
 };
 
@@ -43,9 +42,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className="min-h-screen">
-        {children}
-      </body>
+      <body className="min-h-screen">{children}</body>
     </html>
   );
 }
