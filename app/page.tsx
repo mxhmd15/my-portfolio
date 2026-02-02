@@ -10,9 +10,10 @@ export default function Home() {
     <main className="min-h-screen ">
       <Header />
       
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 
-            w-[600px] h-[600px] rounded-full blur-[120px] 
-            bg-indigo-400/20 dark:bg-indigo-600/10 transition-all duration-700" />
+     <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 
+     w-[600px] h-[600px] rounded-full blur-[120px] 
+     bg-indigo-400/20 dark:bg-indigo-600/10 transition-all duration-700 
+     will-change-transform transform-gpu" />
 
       {/* HERO SECTION */}
       {/* HERO SECTION */}
@@ -23,9 +24,10 @@ export default function Home() {
   {/* Reduced min-h from 90vh to 80vh and added pt (padding-top) to control vertical position */}
   
   <div className="absolute inset-0 -z-10 overflow-hidden">
-    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-blue-600/15 rounded-full blur-[140px]" />
+<div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 
+     w-[600px] h-[600px] bg-blue-600/15 rounded-full blur-[140px] 
+     will-change-transform transform-gpu" />
   </div>
-
   <div className="relative mb-6 md:mb-8"> 
     {/* Reduced margin-bottom from 10 to 6/8 to bring text closer to photo */}
     <div className="absolute -inset-1 bg-gradient-to-r from-blue-500 via-indigo-500 to-indigo-600 rounded-full blur opacity-15" />
