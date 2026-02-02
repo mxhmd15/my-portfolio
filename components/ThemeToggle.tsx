@@ -16,28 +16,26 @@ export default function ThemeToggle() {
     const id = requestAnimationFrame(() => {
       const saved = localStorage.getItem("theme");
       let darkValue = false;
-
       if (saved === "dark" || saved === "light") {
         darkValue = saved === "dark";
       } else {
         darkValue = window.matchMedia?.("(prefers-color-scheme: dark)").matches ?? false;
       }
-
       setIsDark(darkValue);
       applyTheme(darkValue);
       setMounted(true);
     });
-
     return () => cancelAnimationFrame(id);
   }, []);
 
-  const toggleTheme = () => {
+  // ✅ FIXED: Added stopPropagation to prevent mobile glitch
+  const toggleTheme = (e: React.MouseEvent) => {
+    e.stopPropagation();
     const newDark = !isDark;
     setIsDark(newDark);
     applyTheme(newDark);
   };
 
-  // 1. Adjusted placeholder size to match the new button (h-8 w-14)
   if (!mounted) return <div className="h-8 w-14" />;
 
   return (
@@ -45,19 +43,18 @@ export default function ThemeToggle() {
       type="button"
       onClick={toggleTheme}
       aria-label="Toggle theme"
-      /* 2. Changed h-10 w-20 -> h-8 w-14 */
-      className={`relative h-8 w-14 rounded-full transition-all duration-300 shadow-md
+      /* ✅ ADDED: touch-none and tap-highlight-transparent for mobile smoothness */
+      className={`relative h-8 w-14 rounded-full transition-all duration-300 shadow-md touch-none select-none active:scale-95
         ${isDark ? "bg-[#0b1220]" : "bg-[#7da6ff]"}
       `}
+      style={{ WebkitTapHighlightColor: 'transparent' }}
     >
-      {/* Moving Knob - Size reduced from h-7 w-7 to h-6 w-6 */}
       <span
         className={`absolute top-1 left-1 h-6 w-6 rounded-full bg-white transition-transform duration-300 z-10
           ${isDark ? "translate-x-6" : "translate-x-0"}
         `}
       />
 
-      {/* Light-mode bubbles - Re-positioned for smaller width */}
       {!isDark && (
         <>
           <span className="absolute left-8 top-3 h-1 w-1 rounded-full bg-white/90" />
@@ -65,7 +62,6 @@ export default function ThemeToggle() {
         </>
       )}
 
-      {/* Dark-mode moon + stars - Re-positioned for smaller width */}
       {isDark && (
         <>
           <span className="absolute left-3 top-2 h-1 w-1 rounded-full bg-white/90" />
