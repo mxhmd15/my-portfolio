@@ -118,7 +118,7 @@ export default function Header() {
             <span className="h-6 w-px bg-white/20" />
 
             <a
-              href="https://github.com/YOUR_GITHUB"
+              href="https://github.com/mxhmd15"
               target="_blank"
               rel="noopener noreferrer"
               className="text-2xl opacity-70 hover:opacity-100 hover:text-blue-500 hover:-translate-y-1 transition"
@@ -126,7 +126,7 @@ export default function Header() {
               <FaGithub />
             </a>
             <a
-              href="https://linkedin.com/in/YOUR_LINKEDIN"
+              href="https://www.linkedin.com/in/mohammad-amir-9b23a2220/"
               target="_blank"
               rel="noopener noreferrer"
               className="text-2xl opacity-70 hover:opacity-100 hover:text-blue-500 hover:-translate-y-1 transition"
